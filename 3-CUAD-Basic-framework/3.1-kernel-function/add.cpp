@@ -9,7 +9,7 @@ const double b=2.34;
 const double c=3.57;
 
 //函数声明
-void add(const double* x,const double* y,const double* z,const int N);
+void add(const double* x,const double* y,double* z,const int N);
 void check(const double* z,const int N);
 
 //主函数
@@ -18,7 +18,7 @@ int main(){
     const int N=100000000;
     const int M=sizeof(double)*N;
 
-    double* x=(double*) malloc(M);
+    double* x=(double*) malloc(M);              //malloc主要用于分配内存
     double* y=(double*) malloc(M);
     double* z=(double*) malloc(M);
 
@@ -32,6 +32,7 @@ int main(){
     add(x,y,z,N);
     check(z,N);
 
+    //释放内存
     free(x);
     free(y);
     free(z);
@@ -39,7 +40,7 @@ int main(){
 }
 
 //函数定义
-void add(const double* x,const double* y,const double* z,const int N){
+void add(const double* x,const double* y,double* z,const int N){
 
     for(int n=0;n<N;++n){
 
@@ -52,7 +53,7 @@ void check(const double* z,const int N){
     bool has_error=false;
     for(int n=0;n<N;++n){
 
-        if(fabs(z[n]-c)<EPSILON){               //比较两个浮点数的大小必须使用如下方式
+        if(fabs(z[n]-c)>EPSILON){               //判断两个浮点是否相等必须使用如下方式
 
             has_error=true;
         }
