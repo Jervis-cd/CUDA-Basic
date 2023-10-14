@@ -11,6 +11,6 @@ do{                                                                             
         printf("Line %s\n",__LINE__);                                           \
         printf("Error code: %d\n",error_code);                                  \
         printf("Error text:%s\n",cudaGetErrorString(error_code));               \
-        exit(1);
-    }
+        exit(1);                                                                \ 
+    }                                                                           \
 }while(0)
