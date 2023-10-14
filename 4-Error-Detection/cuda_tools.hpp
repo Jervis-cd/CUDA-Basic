@@ -1,7 +1,11 @@
 #pragma once
 #include <stdio.h>
+#include <cuda.h>
+#include <cuda_runtime.h>
 
-#define  checkRuntime(call)                                                     \
+// 版本一,官方使用方式，使用宏函数形式
+// call表示CUDA运行时API函数
+#define checkRuntime(call)                                                     \
 do{                                                                             \
     const cudaError_t error_code=call;                                          \
     if(error_code != cudaSuccess){                                              \
@@ -14,3 +18,7 @@ do{                                                                             
         exit(1);                                                                \ 
     }                                                                           \
 }while(0)
+
+// 版本二，使用普通函数进行CUDA运行时函数检查
+// call表示CUDA运行时API函数，#call表示取API函数名字的字符串
+#define checkCudaRuntime(call) CUDATools::check_runtime(call,#call,__LINE__,__FILE__)
