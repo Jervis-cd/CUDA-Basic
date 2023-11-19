@@ -7,6 +7,7 @@ int main(int argc,char * argv[]){
     if (argc>1) device_id=atoi(argv[1]);
     checkCudaRuntime(cudaSetDevice(device_id));
 
+    // cuda中定义好的结构体类型
     cudaDeviceProp prop;
     checkCudaRuntime(cudaGetDeviceProperties(&(prop,device_id)));
 
@@ -15,4 +16,6 @@ int main(int argc,char * argv[]){
     printf("Compute capability:",prop.major,prop.minor);
     printf("Amount of global memory:",prop.totalGlobalMem/(1024*1024*1024.0));
     printf("Amount of constant memory:",prop.totalConstMem/1024);
+
+    return 0;
 }
